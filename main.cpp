@@ -2,12 +2,17 @@
 
 using namespace std;
 class Rectangle{
+
+// What we are doing here with keyword private is encapsulation/data hiding
 private:
     int lenth;
     int width;
 
+// Here we are exposing the functions only while data is not accessible outside the class scope
 public:
+    // With the functions setLength, setWidth, getLength and getWidth, we are giving access to the data variables
     void setLength(int l){
+       // We are checking validity of the data provided
         if (l >= 0)
             lenth = l;
         else
@@ -23,6 +28,7 @@ public:
     int getLenth (){return lenth;}
     int getWidth (){return width;}
 
+    // The two functions area and perimeter are the facilitators
     int area(){
     return lenth * width;
     }
@@ -36,11 +42,10 @@ int main()
 {
     cout << "Hello world!" << endl;
 
+    // We are creating objects
     Rectangle r1, r2, r3;
-    Rectangle *p;
 
-    p = &r1;
-
+    // Here we are accessing class member functions using the '.' operator
     r1.setLength(10);
     r1.setWidth(20);
 
@@ -55,11 +60,24 @@ int main()
 
     cout << "Length for R1 is: " << r1.getLenth() << " and width for R1 is: " << r1.getWidth() << endl;
 
+    // This kind of pointer is created in the stack memory
+    Rectangle *p;
+
+    p = &r1;
+
     p -> setLength(98);
     p -> setWidth(33);
 
     cout << "Area for pointer is: " << p -> area() << " and perimeter for pointer is: " << p -> perimeter() << endl;
     cout << "Value of length is: " << p -> getLenth() << " and value of width is: " << p -> getWidth() << endl;
+
+    // Here we create the object in heap memory
+    Rectangle *q = new Rectangle;
+
+    q -> setLength (21);
+    q -> setWidth (47);
+
+    cout << "The area is: " << q -> area() << " and perimeter is: " << q -> perimeter() << endl;
 
     return 0;
 }
